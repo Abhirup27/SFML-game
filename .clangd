@@ -1,0 +1,25 @@
+CompileFlags:
+  CompilationDatabase: . # Tells clangd to look for compile_commands.json in current directory
+  Add:
+    - "-Wall"
+    - "-Wextra"
+  Remove:
+    - "-W*"
+
+Index:
+  Background: Build
+  StandardLibrary: Yes
+
+Diagnostics:
+  UnusedIncludes: Strict
+  ClangTidy:
+    Add:
+      - modernize*
+      - performance*
+    Remove:
+      - modernize-use-trailing-return-type
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes

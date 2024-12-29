@@ -1,5 +1,5 @@
 -- Project configuration
-set_project("my_SFML_project")
+set_project("SFML_game")
 set_description("SFML project with debug, release and dev modes")
 add_rules("mode.debug", "mode.release")
 add_rules("mode.dev")
@@ -74,6 +74,8 @@ target("game")
     set_kind("binary")
     set_languages("c++17")
     add_files("src/*.cpp")
+    add_includedirs("src")
+
     add_packages("sfml")
     add_cxxflags(common_warnings)
     
@@ -140,6 +142,7 @@ target("game")
     
     -- After build hook to copy DLLs
     after_build(function (target)
+        --os.exec("xmake project -k compile_commands")
         -- Only copy DLLs that actually exist
         if is_plat("windows") then
             local dll_paths = {}
